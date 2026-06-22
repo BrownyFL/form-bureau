@@ -951,3 +951,50 @@ ul { list-style: none; }
    UTILITY — visibility for GSAP triggers
    ============================================================ */
 .is-revealed { opacity: 1 !important; transform: none !important; }
+
+/* ============================================================
+   STATIC MODE (?static) — full-page screenshots
+   ============================================================ */
+body.is-static #preloader { display: none !important; }
+body.is-static #cursor { display: none !important; }
+body.is-static { cursor: auto; overflow: visible !important; }
+body.is-static html { overflow: visible !important; }
+
+body.is-static .hero__title-inner,
+body.is-static .hero__sub-inner,
+body.is-static .hero__meta,
+body.is-static .hero__scroll-indicator,
+body.is-static .about__line,
+body.is-static .about__text,
+body.is-static .btn-outline,
+body.is-static .service-card,
+body.is-static .three-section__pre,
+body.is-static .three-section__heading,
+body.is-static .three-section__text {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+body.is-static .projects {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+body.is-static .projects__sticky {
+  height: auto !important;
+  position: relative !important;
+}
+
+body.is-static .projects__track {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+}
+
+body.is-static .projects__list {
+  transform: none !important;
+}
+
+body.is-static .service-card__body {
+  max-height: none !important;
+  opacity: 1 !important;
+}

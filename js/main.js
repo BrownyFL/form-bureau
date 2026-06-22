@@ -4,6 +4,10 @@
 
 'use strict';
 
+/* ---------- Static mode for full-page screenshots ---------- */
+const IS_STATIC = new URLSearchParams(window.location.search).has('static');
+if (IS_STATIC) document.body.classList.add('is-static');
+
 /* ---------- Prevent scroll restoration on refresh ---------- */
 if (history.scrollRestoration) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
@@ -558,6 +562,12 @@ window.addEventListener('resize', () => {
    INIT
    ============================================================ */
 function init() {
+  if (IS_STATIC) {
+    initThree();
+    initNav();
+    document.getElementById('projectsCounter').textContent = '157';
+    return;
+  }
   initPreloader();
   initLocoScroll();
   initCursor();
