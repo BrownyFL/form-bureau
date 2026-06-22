@@ -4,14 +4,26 @@
 
 'use strict';
 
-/* ---------- CustomEase ---------- */
-gsap.registerPlugin(ScrollTrigger, CustomEase);
-CustomEase.create('expo', '.76,0,.24,1');
-CustomEase.create('out', '.16,1,.3,1');
+/* ---------- Prevent scroll restoration on refresh ---------- */
+if (history.scrollRestoration) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
+/* ---------- Register GSAP plugins ---------- */
+gsap.registerPlugin(ScrollTrigger);
+if (typeof CustomEase !== 'undefined') {
+  gsap.registerPlugin(CustomEase);
+  CustomEase.create('expo', '.76,0,.24,1');
+  CustomEase.create('out', '.16,1,.3,1');
+} else {
+  gsap.config({ force3D: true });
+}
 
 /* ============================================================
    GLOBALS
    ============================================================ */
+const EASE_EXPO = (typeof CustomEase !== 'undefined') ? 'expo' : 'power4.inOut';
+const EASE_OUT  = (typeof CustomEase !== 'undefined') ? 'out'  : 'power3.out';
+
 const isMobile = () => window.matchMedia('(max-width: 900px)').matches || ('ontouchstart' in window);
 
 let locoScroll = null;
@@ -43,7 +55,7 @@ function initPreloader() {
     gsap.to(preloader, {
       opacity: 0,
       duration: .8,
-      ease: 'expo',
+      ease: EASE_EXPO,
       delay: .3,
       onComplete: () => {
         preloader.style.display = 'none';
@@ -131,7 +143,7 @@ function initCursor() {
    4. HERO ANIMATION  (runs after preloader)
    ============================================================ */
 function startPageAnimations() {
-  const tl = gsap.timeline({ defaults: { ease: 'out' } });
+  const tl = gsap.timeline({ defaults: { ease: EASE_OUT } });
 
   // Letters
   tl.to('.hero__title-inner', {
@@ -187,18 +199,18 @@ function initAbout() {
     y: 0, opacity: 1,
     duration: .9,
     stagger: .15,
-    ease: 'out',
+    ease: EASE_OUT,
   })
   .to('.about__text', {
     y: 0, opacity: 1,
     duration: .8,
     stagger: .1,
-    ease: 'out',
+    ease: EASE_OUT,
   }, '-=.4')
   .to('.btn-outline', {
     y: 0, opacity: 1,
     duration: .7,
-    ease: 'out',
+    ease: EASE_OUT,
   }, '-=.3');
 }
 
@@ -419,7 +431,7 @@ function initThree() {
   const scroller = locoScroll ? '#scroll-container' : window;
   gsap.to(['.three-section__pre', '.three-section__heading', '.three-section__text'], {
     y: 0, opacity: 1,
-    duration: .9, stagger: .15, ease: 'out',
+    duration: .9, stagger: .15, ease: EASE_OUT,
     scrollTrigger: {
       trigger: '.three-section',
       scroller,
@@ -437,7 +449,7 @@ function initServices() {
     y: 0, opacity: 1,
     duration: .8,
     stagger: .12,
-    ease: 'out',
+    ease: EASE_OUT,
     scrollTrigger: {
       trigger: '.services__grid',
       scroller,
@@ -461,7 +473,7 @@ function initContactMagnetic() {
     const cy = rect.top  + rect.height / 2;
     const dx = (e.clientX - cx) * .22;
     const dy = (e.clientY - cy) * .22;
-    gsap.to(heading, { x: dx, y: dy, duration: .4, ease: 'out' });
+    gsap.to(heading, { x: dx, y: dy, duration: .4, ease: EASE_OUT });
   });
 
   section.addEventListener('mouseleave', () => {
@@ -482,7 +494,7 @@ function initMagnetic() {
       const cy = rect.top  + rect.height / 2;
       const dx = (e.clientX - cx) * .3;
       const dy = (e.clientY - cy) * .3;
-      gsap.to(el, { x: dx, y: dy, duration: .35, ease: 'out' });
+      gsap.to(el, { x: dx, y: dy, duration: .35, ease: EASE_OUT });
     });
     el.addEventListener('mouseleave', () => {
       gsap.to(el, { x: 0, y: 0, duration: .55, ease: 'expo' });
@@ -494,7 +506,7 @@ function initMagnetic() {
    11. NAV — fade in after preloader + scroll behaviour
    ============================================================ */
 function initNav() {
-  gsap.from('.nav', { opacity: 0, y: -20, duration: .8, ease: 'out', delay: 2.8 });
+  gsap.from('.nav', { opacity: 0, y: -20, duration: .8, ease: EASE_OUT, delay: 2.8 });
 
   // Smooth scroll for anchor links (both loco and native)
   document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -520,7 +532,7 @@ function initFooter() {
   const scroller = locoScroll ? '#scroll-container' : window;
   gsap.from('.footer__logo, .footer__copy, .footer__links, .footer__bottom', {
     y: 30, opacity: 0,
-    stagger: .1, duration: .7, ease: 'out',
+    stagger: .1, duration: .7, ease: EASE_OUT,
     scrollTrigger: {
       trigger: '.footer',
       scroller,
@@ -544,7 +556,7 @@ window.addEventListener('resize', () => {
 /* ============================================================
    INIT
    ============================================================ */
-document.addEventListener('DOMContentLoaded', () => {
+function init() {
   initPreloader();
   initLocoScroll();
   initCursor();
@@ -557,4 +569,15 @@ document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initFooter();
   initBackToTop();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+
+/* Re-init if page is restored from bfcache */
+window.addEventListener('pageshow', e => {
+  if (e.persisted) window.location.reload();
 });
