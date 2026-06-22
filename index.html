@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FORM — Архитектурное бюро</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="shortcut icon" href="favicon.svg">
+  <meta name="theme-color" content="#0c0c0c">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Locomotive Scroll -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ======================== PRELOADER ======================== -->
+  <div id="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__logo">FORM</div>
+      <div class="preloader__bar-wrap">
+        <div class="preloader__bar"></div>
+      </div>
+      <div class="preloader__counter"><span id="counter">0</span>%</div>
+    </div>
+  </div>
+
+  <!-- ======================== CURSOR ======================== -->
+  <div id="cursor">
+    <div class="cursor__circle"></div>
+    <div class="cursor__dot"></div>
+  </div>
+
+  <!-- ======================== MAIN SCROLL CONTAINER ======================== -->
+  <div id="scroll-container" data-scroll-container>
+
+    <!-- ======================== NAV ======================== -->
+    <nav class="nav">
+      <a href="#" class="nav__logo magnetic">FORM</a>
+      <ul class="nav__links">
+        <li><a href="#about" class="nav__link magnetic" data-scroll-to>О бюро</a></li>
+        <li><a href="#projects" class="nav__link magnetic" data-scroll-to>Проекты</a></li>
+        <li><a href="#services" class="nav__link magnetic" data-scroll-to>Услуги</a></li>
+        <li><a href="#contact" class="nav__link magnetic" data-scroll-to>Контакт</a></li>
+      </ul>
+      <button class="nav__menu-btn" id="menuBtn" aria-label="Меню">
+        <span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- ======================== HERO ======================== -->
+    <section class="hero" id="hero" data-scroll-section>
+      <div class="hero__bg">
+        <div class="hero__gradient"></div>
+        <div class="hero__grid"></div>
+      </div>
+
+      <div class="hero__content">
+        <div class="hero__title-wrap">
+          <div class="hero__title-line">
+            <span class="hero__title-inner">F</span>
+            <span class="hero__title-inner">O</span>
+            <span class="hero__title-inner">R</span>
+            <span class="hero__title-inner">M</span>
+          </div>
+        </div>
+        <p class="hero__sub">
+          <span class="hero__sub-inner">Архитектурное бюро</span>
+        </p>
+        <div class="hero__meta">
+          <div class="hero__stat">
+            <span class="hero__stat-num" id="projectsCounter">0</span>
+            <span class="hero__stat-label">проектов</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-num">12</span>
+            <span class="hero__stat-label">лет опыта</span>
+          </div>
+          <div class="hero__stat">
+            <span class="hero__stat-num">8</span>
+            <span class="hero__stat-label">наград</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__scroll-indicator">
+        <div class="hero__scroll-line"></div>
+        <span>Скролл</span>
+      </div>
+    </section>
+
+    <!-- ======================== ABOUT ======================== -->
+    <section class="about" id="about" data-scroll-section>
+      <div class="about__container">
+        <div class="about__left">
+          <div class="about__year-wrap" data-scroll data-scroll-speed="2">
+            <span class="about__year">2014</span>
+          </div>
+          <div class="about__img-wrap" data-scroll data-scroll-speed="-1">
+            <img
+              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700&q=80"
+              alt="Команда FORM"
+              class="about__img"
+              loading="lazy"
+            >
+            <div class="about__img-overlay"></div>
+          </div>
+        </div>
+
+        <div class="about__right">
+          <div class="about__tag">О бюро</div>
+          <h2 class="about__heading">
+            <span class="about__line" data-scroll data-scroll-call="revealLine">Мы создаём</span>
+            <span class="about__line about__line--italic" data-scroll data-scroll-call="revealLine">архитектуру</span>
+            <span class="about__line" data-scroll data-scroll-call="revealLine">будущего</span>
+          </h2>
+          <p class="about__text about__text--reveal">
+            Бюро FORM основано в 2014 году. Мы специализируемся
+            на жилой, общественной и коммерческой архитектуре,
+            создавая пространства, которые меняют восприятие среды.
+          </p>
+          <p class="about__text about__text--reveal">
+            Наш подход — это синтез классических принципов
+            и современных технологий. Каждый проект начинается
+            с глубокого анализа контекста и потребностей.
+          </p>
+          <a href="#projects" class="btn-outline magnetic">Смотреть проекты</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== PROJECTS (horizontal scroll) ======================== -->
+    <section class="projects" id="projects" data-scroll-section>
+      <div class="projects__sticky"
+           data-scroll
+           data-scroll-sticky
+           data-scroll-target="#projects">
+        <div class="projects__header">
+          <span class="projects__tag">Проекты</span>
+          <p class="projects__hint">Скролльте вниз →</p>
+        </div>
+        <div class="projects__track" id="projectsTrack">
+          <div class="projects__list" id="projectsList">
+
+            <article class="project-card" data-index="01">
+              <div class="project-card__img-wrap">
+                <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=900&q=80" alt="Резиденция Север" loading="lazy" class="project-card__img">
+              </div>
+              <div class="project-card__info">
+                <span class="project-card__num">01</span>
+                <h3 class="project-card__name">Резиденция Север</h3>
+                <div class="project-card__meta">
+                  <span>2023</span>
+                  <span>Жилая</span>
+                </div>
+              </div>
+              <div class="project-card__hover">
+                <span>Смотреть</span>
+              </div>
+            </article>
+
+            <article class="project-card" data-index="02">
+              <div class="project-card__img-wrap">
+                <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=900&q=80" alt="Офис Meridian" loading="lazy" class="project-card__img">
+              </div>
+              <div class="project-card__info">
+                <span class="project-card__num">02</span>
+                <h3 class="project-card__name">Офис Meridian</h3>
+                <div class="project-card__meta">
+                  <span>2022</span>
+                  <span>Коммерческая</span>
+                </div>
+              </div>
+              <div class="project-card__hover">
+                <span>Смотреть</span>
+              </div>
+            </article>
+
+            <article class="project-card" data-index="03">
+              <div class="project-card__img-wrap">
+                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=900&q=80" alt="Культурный центр" loading="lazy" class="project-card__img">
+              </div>
+              <div class="project-card__info">
+                <span class="project-card__num">03</span>
+                <h3 class="project-card__name">Культурный центр</h3>
+                <div class="project-card__meta">
+                  <span>2021</span>
+                  <span>Общественная</span>
+                </div>
+              </div>
+              <div class="project-card__hover">
+                <span>Смотреть</span>
+              </div>
+            </article>
+
+            <article class="project-card" data-index="04">
+              <div class="project-card__img-wrap">
+                <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=900&q=80" alt="Вилла Лесная" loading="lazy" class="project-card__img">
+              </div>
+              <div class="project-card__info">
+                <span class="project-card__num">04</span>
+                <h3 class="project-card__name">Вилла Лесная</h3>
+                <div class="project-card__meta">
+                  <span>2022</span>
+                  <span>Жилая</span>
+                </div>
+              </div>
+              <div class="project-card__hover">
+                <span>Смотреть</span>
+              </div>
+            </article>
+
+            <article class="project-card" data-index="05">
+              <div class="project-card__img-wrap">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&q=80" alt="Башня Horizon" loading="lazy" class="project-card__img">
+              </div>
+              <div class="project-card__info">
+                <span class="project-card__num">05</span>
+                <h3 class="project-card__name">Башня Horizon</h3>
+                <div class="project-card__meta">
+                  <span>2023</span>
+                  <span>Высотная</span>
+                </div>
+              </div>
+              <div class="project-card__hover">
+                <span>Смотреть</span>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Projects bottom bar: progress + arrows -->
+        <div class="projects__bottom">
+          <div class="projects__progress-bar">
+            <div class="projects__progress-fill" id="projectsProgressFill"></div>
+          </div>
+          <div class="projects__nav">
+            <button class="projects__nav-btn magnetic" id="projectsPrev" aria-label="Предыдущий проект">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            </button>
+            <span class="projects__nav-count">
+              <span id="projectsCurrent">01</span><em> / 05</em>
+            </span>
+            <button class="projects__nav-btn magnetic" id="projectsNext" aria-label="Следующий проект">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 19l7-7-7-7"/></svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================== THREE.JS ======================== -->
+    <section class="three-section" id="threeSection" data-scroll-section>
+      <canvas id="threeCanvas"></canvas>
+      <div class="three-section__content">
+        <p class="three-section__pre">Философия</p>
+        <h2 class="three-section__heading">
+          Мы создаём<br><em>пространство</em>
+        </h2>
+        <p class="three-section__text">
+          Архитектура — это диалог между человеком,
+          материей и светом. Каждая линия несёт смысл.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================== SERVICES ======================== -->
+    <section class="services" id="services" data-scroll-section>
+      <div class="services__container">
+        <div class="services__header">
+          <span class="services__tag">Услуги</span>
+          <h2 class="services__heading">Что мы делаем</h2>
+        </div>
+        <div class="services__grid">
+
+          <div class="service-card" data-index="01">
+            <div class="service-card__top">
+              <span class="service-card__num">01</span>
+              <div class="service-card__arrow">→</div>
+            </div>
+            <h3 class="service-card__title">Архитектурное<br>проектирование</h3>
+            <div class="service-card__body">
+              <p>Концепция, рабочая документация, авторский надзор. Работаем с жилыми, коммерческими и общественными объектами любой сложности.</p>
+            </div>
+          </div>
+
+          <div class="service-card" data-index="02">
+            <div class="service-card__top">
+              <span class="service-card__num">02</span>
+              <div class="service-card__arrow">→</div>
+            </div>
+            <h3 class="service-card__title">Интерьерный<br>дизайн</h3>
+            <div class="service-card__body">
+              <p>Создаём среду, в которой хочется жить и работать. От концепции до подбора материалов и мебели.</p>
+            </div>
+          </div>
+
+          <div class="service-card" data-index="03">
+            <div class="service-card__top">
+              <span class="service-card__num">03</span>
+              <div class="service-card__arrow">→</div>
+            </div>
+            <h3 class="service-card__title">Градостроительное<br>планирование</h3>
+            <div class="service-card__body">
+              <p>Мастер-планы, концепции развития территорий, анализ городской среды и транспортных потоков.</p>
+            </div>
+          </div>
+
+          <div class="service-card" data-index="04">
+            <div class="service-card__top">
+              <span class="service-card__num">04</span>
+              <div class="service-card__arrow">→</div>
+            </div>
+            <h3 class="service-card__title">3D-визуализация<br>и BIM</h3>
+            <div class="service-card__body">
+              <p>Фотореалистичная визуализация и информационное моделирование зданий для точного планирования.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== CONTACT ======================== -->
+    <section class="contact" id="contact" data-scroll-section>
+      <div class="contact__container">
+        <div class="contact__heading-wrap">
+          <h2 class="contact__heading magnetic-text" id="contactHeading">
+            Начнём<br>проект?
+          </h2>
+        </div>
+        <div class="contact__body">
+          <form class="contact__form" id="contactForm" novalidate>
+            <div class="form-group">
+              <label class="form-label">Имя</label>
+              <input type="text" class="form-input" placeholder="Ваше имя" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Проект</label>
+              <textarea class="form-input form-textarea" placeholder="Расскажите о вашем проекте..." rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn-primary magnetic">
+              <span>Отправить</span>
+              <div class="btn-primary__arrow">↗</div>
+            </button>
+          </form>
+
+          <div class="contact__info">
+            <div class="contact__block">
+              <p class="contact__block-label">Адрес</p>
+              <p class="contact__block-value">Москва, ул. Пречистенка, 11</p>
+            </div>
+            <div class="contact__block">
+              <p class="contact__block-label">Email</p>
+              <a href="mailto:hello@form-bureau.ru" class="contact__block-value contact__link magnetic">hello@form-bureau.ru</a>
+            </div>
+            <div class="contact__block">
+              <p class="contact__block-label">Телефон</p>
+              <a href="tel:+74951234567" class="contact__block-value contact__link magnetic">+7 495 123 45 67</a>
+            </div>
+            <div class="contact__socials">
+              <a href="#" class="contact__social magnetic">Instagram</a>
+              <a href="#" class="contact__social magnetic">Behance</a>
+              <a href="#" class="contact__social magnetic">Telegram</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== FOOTER ======================== -->
+    <footer class="footer" data-scroll-section>
+      <div class="footer__top">
+        <span class="footer__logo">FORM</span>
+        <p class="footer__copy">© 2014 – 2024 FORM Архитектурное бюро.<br>Все права защищены.</p>
+        <div class="footer__links">
+          <a href="#" class="magnetic">Политика конфиденциальности</a>
+          <a href="#" class="magnetic">Sitemap</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>Проектируем с 2014</span>
+        <span>Москва, Россия</span>
+      </div>
+    </footer>
+
+  </div><!-- /scroll-container -->
+
+  <!-- ======================== BACK TO TOP ======================== -->
+  <button id="backToTop" class="back-to-top" aria-label="Наверх">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <!-- CDN Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/CustomEase.min.js"></script>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
