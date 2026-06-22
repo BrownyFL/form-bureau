@@ -70,6 +70,7 @@ function initPreloader() {
    ============================================================ */
 function initLocoScroll() {
   if (isMobile()) return;
+  if (new URLSearchParams(window.location.search).has('static')) return;
 
   locoScroll = new LocomotiveScroll({
     el: document.querySelector('#scroll-container'),
